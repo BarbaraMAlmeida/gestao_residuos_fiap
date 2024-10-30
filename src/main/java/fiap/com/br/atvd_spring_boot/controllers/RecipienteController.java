@@ -1,6 +1,7 @@
 package fiap.com.br.atvd_spring_boot.controllers;
 
-import fiap.com.br.atvd_spring_boot.dto.RecipienteDto;
+import fiap.com.br.atvd_spring_boot.dto.RecipienteCadastroDto;
+import fiap.com.br.atvd_spring_boot.dto.RecipienteExibicaoDto;
 import fiap.com.br.atvd_spring_boot.services.RecipienteService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,14 +19,14 @@ public class RecipienteController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<RecipienteDto> getRecipientes() {
+    public List<RecipienteExibicaoDto> getRecipientes() {
         return recipienteService.getRecipientes();
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public RecipienteDto createRecipiente(@RequestBody @Valid RecipienteDto recipienteDto) {
-        return recipienteService.createRecipiente(recipienteDto);
+    public RecipienteExibicaoDto createRecipiente(@RequestBody @Valid RecipienteCadastroDto recipienteCadastroDto) {
+        return recipienteService.createRecipiente(recipienteCadastroDto);
     }
 
 }

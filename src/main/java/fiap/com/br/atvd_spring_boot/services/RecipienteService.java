@@ -1,9 +1,9 @@
 package fiap.com.br.atvd_spring_boot.services;
 
-import fiap.com.br.atvd_spring_boot.dto.RecipienteDto;
+import fiap.com.br.atvd_spring_boot.dto.RecipienteCadastroDto;
+import fiap.com.br.atvd_spring_boot.dto.RecipienteExibicaoDto;
 import fiap.com.br.atvd_spring_boot.model.Recipiente;
 import fiap.com.br.atvd_spring_boot.repository.RecipienteRepository;
-import jakarta.validation.Valid;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,20 +18,17 @@ public class RecipienteService {
     @Autowired
     private RecipienteRepository recipienteRepository;
 
-    @Autowired
-    private ModelMapper modelMapper;
 
-
-    public List<RecipienteDto> getRecipientes() {
-        List<Recipiente> recipientes = recipienteRepository.findAll();
-        return recipientes.stream()
-                .map(recipiente -> modelMapper.map(recipiente, RecipienteDto.class))
+    public List<RecipienteExibicaoDto> getRecipientes() {
+        return recipienteRepository.findAll()
+                .stream()
+                .map(RecipienteExibicaoDto::new)
                 .collect(Collectors.toList());
     }
 
-    public RecipienteDto createRecipiente(@Valid RecipienteDto recipienteDto) {
+    public RecipienteExibicaoDto createRecipiente(RecipienteCadastroDto recipienteCadastroDto) {
         Recipiente recipiente = new Recipiente();
-        BeanUtils.copyProperties(recipienteDto, recipiente);
-        return new RecipienteDto(recipienteRepository.save(recipiente));
+        BeanUtils.copyProperties(recipienteCadastroDto, recipiente);
+        return new RecipienteExibicaoDto(recipienteRepository.save(recipiente));
     }
 }

@@ -2,17 +2,16 @@ package fiap.com.br.atvd_spring_boot.model;
 
 import jakarta.persistence.*;
 import lombok.*;
-
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "T_RECIPIENTE")
+@Table(name = "t_recipiente")
 @Getter
 @Setter
-@AllArgsConstructor
-@NoArgsConstructor
 @EqualsAndHashCode
 @ToString
+@AllArgsConstructor
+@NoArgsConstructor
 public class Recipiente {
 
     @Id
@@ -45,5 +44,6 @@ public class Recipiente {
 
     @Column(name = "longitude_recip")
     private Long longitude;
+
 
 }

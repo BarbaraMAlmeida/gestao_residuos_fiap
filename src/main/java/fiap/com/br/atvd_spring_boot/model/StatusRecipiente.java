@@ -3,8 +3,8 @@ package fiap.com.br.atvd_spring_boot.model;
 public enum StatusRecipiente {
 
     VAZIO("Vazio"),
-    QUASECHEIO("Quase cheio"),
-    CAPACIDADEATINGIDA("Capacidade atingida");
+    QUASE_CHEIO("Quase cheio"),
+    CAPACIDADE_ATINGIDA("Capacidade atingida");
 
     private String status;
 
