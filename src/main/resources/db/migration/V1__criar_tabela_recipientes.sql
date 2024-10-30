@@ -1,5 +1,5 @@
 CREATE TABLE t_recipiente (
-    id_recipiente   INTEGER NOT NULL,
+    id_recipiente   INTEGER NOT NULL PRIMARY KEY,
     max_capacidade  INTEGER NOT NULL,
     atual_nvl       INTEGER NOT NULL,
     status          VARCHAR2(20) NOT NULL,

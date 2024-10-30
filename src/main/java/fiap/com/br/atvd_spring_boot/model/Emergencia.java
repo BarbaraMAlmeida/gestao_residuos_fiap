@@ -40,13 +40,13 @@ public class Emergencia {
     //Um recipiente pode estar relacionado a várias emergências,
     // mas cada emergência está associada a apenas um recipiente.
     @ManyToOne
-    @JoinColumn(name = "T_RECIPIENTE_id_recipiente")
+    @JoinColumn(name = "T_RECIPIENTE_ID_RECIPIENTE")
     private Recipiente recipiente;
 
     // Um caminhão pode estar envolvido em várias emergências,
     // mas cada emergência está associada a apenas um caminhão.
     @ManyToOne
-    @JoinColumn(name = "T_CAMINHAO_id_caminhao")
+    @JoinColumn(name = "T_CAMINHAO_ID_CAMINHAO")
     private Caminhao caminhao;
 
 
