@@ -33,6 +33,7 @@ public class Recipiente {
     @Column(name = "atual_nvl")
     private Long atualNivel;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "status")
     private StatusRecipiente status;
 

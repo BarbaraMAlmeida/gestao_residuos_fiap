@@ -25,12 +25,6 @@ public class EmergenciaService {
     @Autowired
     private RecipienteRepository recipienteRepository;
 
-//    public EmergenciaDto createEmergencia(@Valid EmergenciaDto emergenciaDto) {
-//        Emergencia emergencia = new Emergencia();
-//        BeanUtils.copyProperties(emergenciaDto, emergencia);
-//        return new EmergenciaDto(emergenciaRepository.save(emergencia));
-//    }
-
     public List<EmergenciaExibicaoDto> findAll() {
         return emergenciaRepository.findAll().stream()
                 .map(EmergenciaExibicaoDto::new)
