@@ -9,14 +9,14 @@ public record AgendamentoExibicaoDto(
         Long idAgendamento,
         LocalDate dtAgendamento,
         StatusAgendamento statusAgendamento,
-        Long rotaId
+        Long rota
 ) {
     public AgendamentoExibicaoDto(Agendamento agendamento) {
         this(
                 agendamento.getIdAgendamento(),
                 agendamento.getDtAgendamento(),
                 agendamento.getStatusAgendamento(),
-                agendamento.getRota() != null ? agendamento.getRota().getIdRota() : null
+                agendamento.getRota().getIdRota()
         );
     }
 }

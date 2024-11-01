@@ -9,7 +9,7 @@ public record CaminhaoExibicaoDto(
     public CaminhaoExibicaoDto(Caminhao caminhao) {
         this(
                 caminhao.getPlaca(),
-                Caminhao.getCapacidade()
+                caminhao.getCapacidade()
         );
     }
 }

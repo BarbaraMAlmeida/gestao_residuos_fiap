@@ -1,6 +1,7 @@
 package fiap.com.br.atvd_spring_boot.services;
 
 import fiap.com.br.atvd_spring_boot.dto.RotaDto;
+import fiap.com.br.atvd_spring_boot.exception.InformacaoNaoEncontradaException;
 import fiap.com.br.atvd_spring_boot.model.Caminhao;
 import fiap.com.br.atvd_spring_boot.model.Recipiente;
 import fiap.com.br.atvd_spring_boot.model.Rota;
@@ -25,9 +26,9 @@ public class RotaService {
     private RecipienteRepository recipienteRepository;
 
     public Rota criarRota(RotaDto rotaDto) {
-        Recipiente recipiente = recipienteRepository.findById(rotaDto.idRecipiente())
+        Recipiente recipiente = recipienteRepository.findById(rotaDto.recipiente())
                 .orElseThrow(() -> new RuntimeException("Recipiente não encontrado"));
-        Caminhao caminhao = caminhaoRepository.findById(rotaDto.idCaminhao())
+        Caminhao caminhao = caminhaoRepository.findById(rotaDto.caminhao())
                 .orElseThrow(() -> new RuntimeException("Caminhão não encontrado"));
 
         Rota rota = new Rota();
@@ -41,7 +42,7 @@ public class RotaService {
         if (rotaRepository.existsById(id)) {
             rotaRepository.deleteById(id);
         } else {
-            throw new RuntimeException("Rota não encontrada");
+            throw new InformacaoNaoEncontradaException("Rota não encontrada");
         }
     }
 }

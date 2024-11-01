@@ -32,6 +32,7 @@ public class Emergencia {
     private LocalDate dtEmergencia;
 
     @Column(name = "status")
+    @Enumerated(EnumType.STRING)
     private StatusEmergencia status;
 
     @Column(name = "ds_emergencia")

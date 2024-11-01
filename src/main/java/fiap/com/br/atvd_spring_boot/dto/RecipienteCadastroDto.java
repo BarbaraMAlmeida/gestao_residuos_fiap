@@ -1,8 +1,6 @@
 package fiap.com.br.atvd_spring_boot.dto;
 
-import fiap.com.br.atvd_spring_boot.model.Recipiente;
 import fiap.com.br.atvd_spring_boot.model.StatusRecipiente;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import java.time.LocalDate;
 
@@ -21,15 +19,4 @@ public record RecipienteCadastroDto(
          @NotNull(message = "A longitude é obrigatória")
          Long longitude
 ) {
-    public RecipienteCadastroDto(Recipiente recipiente) {
-        this(
-                recipiente.getIdRecipiente(),
-                recipiente.getMaxCapacidade(),
-                recipiente.getAtualNivel(),
-                recipiente.getStatus(),
-                recipiente.getUltimaAtualizacao(),
-                recipiente.getLatitude(),
-                recipiente.getLongitude()
-        );
-    }
 }

@@ -29,6 +29,7 @@ public class RecipienteService {
     public RecipienteExibicaoDto createRecipiente(RecipienteCadastroDto recipienteCadastroDto) {
         Recipiente recipiente = new Recipiente();
         BeanUtils.copyProperties(recipienteCadastroDto, recipiente);
+
         return new RecipienteExibicaoDto(recipienteRepository.save(recipiente));
     }
 }

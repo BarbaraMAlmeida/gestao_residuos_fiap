@@ -3,6 +3,7 @@ package fiap.com.br.atvd_spring_boot.dto;
 import fiap.com.br.atvd_spring_boot.model.Agendamento;
 import fiap.com.br.atvd_spring_boot.model.Rota;
 import fiap.com.br.atvd_spring_boot.model.StatusAgendamento;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import java.time.LocalDate;
 
@@ -16,14 +17,14 @@ public record AgendamentoCadastroDto(
         StatusAgendamento statusAgendamento,
 
         @NotNull(message = "A rota é obrigatória")
-        Rota rota
+        Long rota
 ) {
     public AgendamentoCadastroDto(Agendamento agendamento) {
         this(
                 agendamento.getIdAgendamento(),
                 agendamento.getDtAgendamento(),
                 agendamento.getStatusAgendamento(),
-                agendamento.getRota()
+                agendamento.getRota().getIdRota()
         );
     }
 }

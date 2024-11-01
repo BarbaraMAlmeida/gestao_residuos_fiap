@@ -2,6 +2,7 @@ package fiap.com.br.atvd_spring_boot.dto;
 
 import fiap.com.br.atvd_spring_boot.model.Emergencia;
 import fiap.com.br.atvd_spring_boot.model.StatusEmergencia;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDate;
@@ -13,7 +14,7 @@ Long idEmergencia,
 LocalDate dtEmergencia,
 @NotNull(message = "O valor do status é obrigatório")
 StatusEmergencia status,
-@NotNull(message = "O valor da desc é obrigatório")
+@NotBlank(message = "O valor da desc é obrigatório")
 String descricao,
 @NotNull(message = "O valor do recipiente é obrigatório")
 Long recipiente,

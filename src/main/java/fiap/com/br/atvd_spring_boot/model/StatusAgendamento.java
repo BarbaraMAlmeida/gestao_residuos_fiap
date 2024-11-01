@@ -2,7 +2,7 @@ package fiap.com.br.atvd_spring_boot.model;
 
 public enum StatusAgendamento {
     REALIZADO("Realizado"),
-    CONCLUIDO("Concluído");
+    CONCLUIDO("Concluido");
 
     private String status;
 

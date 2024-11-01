@@ -1,7 +1,9 @@
 package fiap.com.br.atvd_spring_boot.advice;
 
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.InvalidDataAccessResourceUsageException;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -27,15 +29,15 @@ public class ApplicationExceptionHandler {
         return mapaDeErro;
     }
 
-//    @ResponseStatus(HttpStatus.CONFLICT)
-//    @ExceptionHandler(DataIntegrityViolationException.class)
-//    public Map<String, String> manusearIntegridadeDosDados(DataIntegrityViolationException erro) {
-//        Map<String, String> mapaDeErro = new HashMap<>();
-//
-//        mapaDeErro.put("erro", "Usuário já cadastrado!");
-//
-//        return mapaDeErro;
-//    }
+    @ResponseStatus(HttpStatus.CONFLICT)
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    public Map<String, String> manusearIntegridadeDosDados(DataIntegrityViolationException erro) {
+        Map<String, String> mapaDeErro = new HashMap<>();
+
+        mapaDeErro.put("erro", "Verifique as informações informadas.");
+
+        return mapaDeErro;
+    }
 
 
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
@@ -44,6 +46,16 @@ public class ApplicationExceptionHandler {
         Map<String, String> mapaDeErro = new HashMap<>();
 
         mapaDeErro.put("erro", "A tabela ou view não existe no banco de dados.");
+
+        return mapaDeErro;
+    }
+
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(HttpMessageNotReadableException.class)
+    public Map<String, String> manusearErroDeLeituraDoCorpo(HttpMessageNotReadableException erro) {
+        Map<String, String> mapaDeErro = new HashMap<>();
+        mapaDeErro.put("erro", "O corpo da requisição está malformado ou faltando campos obrigatórios.");
 
         return mapaDeErro;
     }

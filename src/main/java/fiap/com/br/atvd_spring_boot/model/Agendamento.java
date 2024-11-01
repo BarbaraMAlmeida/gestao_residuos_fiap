@@ -32,8 +32,8 @@ public class Agendamento {
     private LocalDate dtAgendamento;
 
     @Column(name = "status_agendamento")
+    @Enumerated(EnumType.STRING)
     private StatusAgendamento statusAgendamento;
-
 
     //Um agendamento está relacionado a apenas uma rota,
     // mas uma rota pode ter vários agendamentos.

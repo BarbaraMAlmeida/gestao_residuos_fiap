@@ -3,7 +3,9 @@ package fiap.com.br.atvd_spring_boot.controllers;
 import fiap.com.br.atvd_spring_boot.dto.RotaDto;
 import fiap.com.br.atvd_spring_boot.model.Rota;
 import fiap.com.br.atvd_spring_boot.services.RotaService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -15,12 +17,14 @@ public class RotaController {
 
     // Endpoint post
     @PostMapping
-    public Rota criarRota(@RequestBody RotaDto rotaDto) {
+    @ResponseStatus(HttpStatus.CREATED)
+    public Rota criarRota(@RequestBody @Valid RotaDto rotaDto) {
         return rotaService.criarRota(rotaDto);
     }
 
     // Endpoint delete
     @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
     public void deletarRota(@PathVariable Long id) {
         rotaService.deletarRota(id);
     }
