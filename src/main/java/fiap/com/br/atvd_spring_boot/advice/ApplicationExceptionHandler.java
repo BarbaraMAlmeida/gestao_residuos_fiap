@@ -1,10 +1,13 @@
 package fiap.com.br.atvd_spring_boot.advice;
 
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.InvalidDataAccessResourceUsageException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.validation.FieldError;
+import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -55,10 +58,33 @@ public class ApplicationExceptionHandler {
     @ExceptionHandler(HttpMessageNotReadableException.class)
     public Map<String, String> manusearErroDeLeituraDoCorpo(HttpMessageNotReadableException erro) {
         Map<String, String> mapaDeErro = new HashMap<>();
-        mapaDeErro.put("erro", "O corpo da requisição está malformado ou faltando campos obrigatórios.");
+        mapaDeErro.put("erro", "Preencha todos os campos obrigatórios.");
 
         return mapaDeErro;
     }
 
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ExceptionHandler(EntityNotFoundException.class)
+    public Map<String, String> manusearEntidadeNaoEncontrada(EntityNotFoundException erro) {
+        Map<String, String> mapaDeErro = new HashMap<>();
+        mapaDeErro.put("erro", "Entidade não encontrada.");
+        return mapaDeErro;
+    }
+
+    @ResponseStatus(HttpStatus.METHOD_NOT_ALLOWED)
+    @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
+    public Map<String, String> manusearMetodoNaoPermitido(HttpRequestMethodNotSupportedException erro) {
+        Map<String, String> mapaDeErro = new HashMap<>();
+        mapaDeErro.put("erro", "Método HTTP não suportado.");
+        return mapaDeErro;
+    }
+
+    @ResponseStatus(HttpStatus.FORBIDDEN)
+    @ExceptionHandler(AccessDeniedException.class)
+    public Map<String, String> manusearAcessoNegado(AccessDeniedException erro) {
+        Map<String, String> mapaDeErro = new HashMap<>();
+        mapaDeErro.put("erro", "Acesso negado.");
+        return mapaDeErro;
+    }
 
 }
