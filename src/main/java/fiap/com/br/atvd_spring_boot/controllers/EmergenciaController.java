@@ -6,6 +6,7 @@ import fiap.com.br.atvd_spring_boot.dto.EmergenciaExibicaoDto;
 import fiap.com.br.atvd_spring_boot.services.EmergenciaService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,11 +20,13 @@ public class EmergenciaController {
 
     // Endpoint GET para listar todas as emergências
     @GetMapping
+    @ResponseStatus(HttpStatus.OK)
     public List<EmergenciaExibicaoDto> getAllEmergencias() {
         return emergenciaService.findAll();
     }
 
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     public EmergenciaExibicaoDto createEmergencia(
             @RequestBody @Valid EmergenciaCadastroDto emergenciaDto
     ){
