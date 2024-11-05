@@ -21,11 +21,11 @@ public class Usuario implements UserDetails {
     @Id
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
-            generator = "SEQ_USUARIOS"
+            generator = "SEQ_AUTOMATIC_T_USUARIO"
     )
     @SequenceGenerator(
-            name = "SEQ_USUARIOS",
-            sequenceName = "SEQ_USUARIOS",
+            name = "SEQ_AUTOMATIC_T_USUARIO",
+            sequenceName = "SEQ_AUTOMATIC_T_USUARIO",
             allocationSize = 1
     )
     @Column(name = "usuario_id")
