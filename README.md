@@ -12,7 +12,7 @@ Além disso, temos a funcionalidade de cadastro de agendamentos de coletas emerg
 
 ## Recomendação de fluxo de teste do sistema
 
-## Visualize nosso diagrama para entender as dependências entre tabelas 
+# Visualize nosso diagrama para entender as dependências entre tabelas 
 https://www.canva.com/design/DAGUOsXi-48/_h-wh-iOQvesDQcmd7c-LA/edit?utm_content=DAGUOsXi-48&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
 
 1) Cadastre-se no sistema -> Você pode fazer login como ADMIN ou USER.
