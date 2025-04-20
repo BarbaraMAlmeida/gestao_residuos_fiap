@@ -42,6 +42,7 @@ jobs:
             --name gestao-residuos-dev \
             --image ${{ env.IMAGE }}:dev-${{ needs.build-and-push.outputs.tag }} \
             --dns-name-label gestao-residuos-dev \
+            --os-type Linux \
             --ports 8080 --cpu 1 --memory 1.5 \
             --restart-policy OnFailure
 
@@ -60,5 +61,6 @@ jobs:
             --name gestao-residuos-prod \
             --image ${{ env.IMAGE }}:prod-${{ needs.build-and-push.outputs.tag }} \
             --dns-name-label gestao-residuos-prod \
+            --os-type Linux \
             --ports 8080 --cpu 1 --memory 1.5 \
             --restart-policy OnFailure
