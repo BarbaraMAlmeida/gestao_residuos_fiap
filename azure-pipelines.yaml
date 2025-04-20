@@ -1,0 +1,89 @@
+trigger:
+  branches:
+    include:
+      - main   # adjust if you use another branch
+
+variables:
+  imageName: 'barbaramalmeida/gestao-residuos'
+  tagDev: 'dev-$(Build.BuildId)'
+  tagProd: 'prod-$(Build.BuildId)'
+
+stages:
+
+  # ─── Build & Push ────────────────────────
+  - stage: BuildAndPush
+    displayName: Build & Push Docker Image
+    jobs:
+      - job: Build
+        pool:
+          vmImage: 'ubuntu-latest'
+        variables:
+          - group: docker‑creds      # your Variable Group with DOCKER_USERNAME / DOCKER_PASSWORD
+        steps:
+          - task: Docker@2
+            displayName: Build & Push (dev & prod)
+            inputs:
+              containerRegistry: 'DockerHubConnection'
+              repository: $(imageName)
+              command: buildAndPush
+              Dockerfile: 'Dockerfile'      # adjust path if yours is nested
+              tags: |
+                $(tagDev)
+                $(tagProd)
+
+  # ─── Deploy to Dev ───────────────────────
+  - stage: DeployDev
+    displayName: Deploy to Dev (ACI)
+    dependsOn: BuildAndPush
+    condition: succeeded()
+    jobs:
+      - job: Deploy
+        pool:
+          vmImage: 'ubuntu-latest'
+        steps:
+          - task: AzureCLI@2
+            displayName: Deploy to ACI (Dev)
+            inputs:
+              azureSubscription: 'AzureServiceConnection'
+              scriptType: bash
+              scriptLocation: inlineScript
+              inlineScript: |
+                az container create \
+                  --resource-group rg-gestao-dev \
+                  --name gestao-residuos-dev \
+                  --image $(imageName):$(tagDev) \
+                  --dns-name-label gestao-residuos-dev \
+                  --ports 8080 \
+                  --cpu 1 --memory 1.5 \
+                  --restart-policy OnFailure
+
+  # ─── Deploy to Prod ──────────────────────
+  - stage: DeployProd
+    displayName: Deploy to Prod (ACI)
+    dependsOn: BuildAndPush
+    condition: and(succeeded(), eq( variables['Build.SourceBranch'], 'refs/heads/main'))
+    jobs:
+      - deployment: ProdDeploy
+        displayName: Prod Deployment
+        environment: production    # configure approvals here
+        pool:
+          vmImage: 'ubuntu-latest'
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - task: AzureCLI@2
+                  displayName: Deploy to ACI (Prod)
+                  inputs:
+                    azureSubscription: 'AzureServiceConnection'
+                    scriptType: bash
+                    scriptLocation: inlineScript
+                    inlineScript: |
+                      az container create \
+                        --resource-group rg-gestao-prod \
+                        --name gestao-residuos-prod \
+                        --image $(imageName):$(tagProd) \
+                        --dns-name-label gestao-residuos-prod \
+                        --ports 8080 \
+                        --cpu 1 --memory 1.5 \
+                        --restart-policy OnFailure
