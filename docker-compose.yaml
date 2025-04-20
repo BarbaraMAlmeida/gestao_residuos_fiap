@@ -1,0 +1,38 @@
+services:
+#  oracle:
+#    image: gvenzl/oracle-xe:21-slim
+#    container_name: oracle-xe
+#    environment:
+#      ORACLE_USERNAME: root
+#      ORACLE_PASSWORD: root
+#      ORACLE_ALLOW_REMOTE: "true"
+#      ORACLE_DISABLE_ASYNCH_IO: "true"
+#    ports:
+#      - "1521:1521"
+#    volumes:
+#      - oracle-data:/opt/oracle/oradata
+#    healthcheck:
+#      test: ["CMD", "bash", "-c", "echo 'SELECT 1 FROM DUAL;' | sqlplus -s SYS/mysecretpass@//localhost:1521/XEPDB1 as sysdba"]
+#      interval: 30s
+#      timeout: 10s
+#      retries: 10
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: gestao-residuos
+    container_name: springboot-app
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:oracle:thin:@oracle.fiap.com.br:1521:ORCL
+      SPRING_DATASOURCE_USERNAME: RM552825
+      SPRING_DATASOURCE_PASSWORD: 220105
+      JAVA_OPTS: "-Xmx512m"
+#    depends_on:
+#      oracle:
+#        condition: service_healthy
+
+#volumes:
+#  oracle-data:
