@@ -140,3 +140,8 @@ curl http://localhost:8080/api/v1/caminhoes \
 
 **Autores:** André Mori, Bárbara Almeida, Gabriel Lopez, Jaqueline Otero, Matheus Oliveira
 
+
+## 8. Link Repositório
+
+**Autores:** https://github.com/BarbaraMAlmeida/gestao_residuos_fiap
+
