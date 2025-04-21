@@ -68,5 +68,6 @@ jobs:
             --registry-login-server index.docker.io \
             --registry-username ${{ secrets.DOCKERHUB_USERNAME }} \
             --registry-password ${{ secrets.DOCKERHUB_TOKEN }} \
+            --environment-variables SPRING_PROFILES_ACTIVE=production \
             --ports 8080 --cpu 1 --memory 1.5 \
             --restart-policy OnFailure
