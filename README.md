@@ -27,7 +27,7 @@ cd gestao_residuos_fiap
 
 ## 2. Configurar variáveis de ambiente
 
-No arquivo `src/main/resources/application.properties`, configure suas credenciais de banco de dados:
+No arquivo `src/main/resources/application.properties`, `Dockerfile` e `docker-compose.yaml` configure suas credenciais de banco de dados:
 
 ```properties
 spring.datasource.url=jdbc:<tipo-do-seu-banco>://<host>:<porta>/<nome_do_banco>
@@ -40,6 +40,8 @@ server.port=8080
 > **Dica:** para ambiente de produção, edite `application-production.properties` com valores adequados.
 
 ## 3. Build e execução local
+
+#### Para iniciar delete todas as tabelas, sequences e dados da flayway_schema_history. 
 
 ### 3.1 Com Maven
 
