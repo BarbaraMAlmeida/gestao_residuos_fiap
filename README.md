@@ -143,5 +143,5 @@ curl http://localhost:8080/api/v1/caminhoes \
 
 ## 8. Link Repositório
 
-**Autores:** https://github.com/BarbaraMAlmeida/gestao_residuos_fiap
+**Link:** https://github.com/BarbaraMAlmeida/gestao_residuos_fiap
 
