@@ -1,4 +1,4 @@
-CREATE TABLE t_emergencia (
+CREATE TABLE IF NOT EXISTS t_emergencia (
     id_emergencia              INTEGER NOT NULL PRIMARY KEY,
     dt_emergencia              DATE NOT NULL,
     status                     VARCHAR2(20) NOT NULL,
@@ -9,7 +9,7 @@ CREATE TABLE t_emergencia (
         FOREIGN KEY (t_caminhao_id_caminhao) REFERENCES t_caminhao(id_caminhao)
 );
 
-CREATE SEQUENCE SEQ_AUTOMATIC_T_EMERGENCIA
+CREATE SEQUENCE IF NOT EXISTS SEQ_AUTOMATIC_T_EMERGENCIA
 START WITH 1
 INCREMENT BY 1 NOCACHE
 NOCYCLE;

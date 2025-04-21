@@ -1,54 +1,140 @@
-<img width=100% src="https://capsule-render.vercel.app/api?type=waving&color=004357&height=120&section=header"/>
+# Sistema de Gestão de Resíduos FIAP
 
-[![Typing SVG](https://readme-typing-svg.herokuapp.com/?color=004357&size=55&center=true&vCenter=true&width=1000&lines=Gestao-Residuos;)](https://git.io/typing-svg)
+Este projeto foi desenvolvido como parte de uma iniciativa educacional na Faculdade FIAP, com foco na criação de uma solução para agendamento e monitoramento em tempo real da coleta de resíduos em uma cidade.
 
-# Sistema de Gestão de Resíduos
-Este projeto foi desenvolvido como parte de uma iniciativa educacional na Faculdade FIAP, com foco na criação de uma solução inovadora para agendamento e 
-monitoramento de resíduos de lixo de uma cidade. O objetivo do projeto é focarmos no desenvolvimento de smart cities, trazendo benefícios para a sociedade através da tecnologia. 
+## Funcionalidades Principais
 
-## 👀 Visão Geral
-Nosso sistema conta com funcionalidades e automações para cadastros e agendamentos de coletas de lixo pela cidade. Todas programadas com um caminhão específico e rotas. 
-Além disso, temos a funcionalidade de cadastro de agendamentos de coletas emergênciais. 
+- Cadastro e autenticação de usuários (roles: ADMIN e USER)
+- Cadastro de Caminhões, Recipientes, Rotas, Agendamentos e Emergências
+- Endpoints REST protegidos por JWT
+- Pipeline CI/CD via GitHub Actions com build, push e deploy para Azure Container Instances (Dev e Prod)
 
-## Recomendação de fluxo de teste do sistema
+## Pré-requisitos
 
-Visualize nosso diagrama para entender as dependências entre tabelas 
-https://www.canva.com/design/DAGUOsXi-48/_h-wh-iOQvesDQcmd7c-LA/edit?utm_content=DAGUOsXi-48&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
+- Java 17 ou superior
+- Maven 3.6 ou superior
+- Git
+- Docker (opcional, para execução em container)
+- Conta no Docker Hub (para push/pull de imagens)
+- CLI do Azure (para deploy em ACI)
 
-1) Cadastre-se no sistema -> Você pode fazer login como ADMIN ou USER.
-2) Faça login no sistema para receber seu token JWT.
-3) Cadastre os Caminhões
-4) Cadastre os Recipientes
-5) Cadastre as Rotas
-6) Cadastre os Agendamentos
-7) Cadastre as Emergências
+## 1. Clonar o repositório
 
-## Permissões dentro do sistema
-Os endpoints de login (/auth/login) e registro (/auth/register), são abertos ao público. 
-Os endpoints get podem ser acessados por usuários autenticados e autorizados (ADMIN e USER)
-Os endpoints post, put e delete só podem ser acessados por usuarios ADMIN autenticados. 
+```bash
+git clone https://github.com/BarbaraMAlmeida/gestao_residuos_fiap.git
+cd gestao_residuos_fiap
+```
 
-## Dockerização
-O sistema foi dockerizado porém não foi publicado. Temos o arquivo Dockerfile no projeto com a referência do .jar
-Para criar a imagem e o container siga os passos abaixo:
+## 2. Configurar variáveis de ambiente
 
-1) Instale o maven do apache https://maven.apache.org/download.cgi
-2) Para criar a imagem rode docker build -t atividade:spring-docker .
-3) Agora crie o container com: docker container run -d -p 8080:8080 --name atividade-spring-container atividade:spring-docker
-4) Verifique se o container foi inicializado com docker container ls
+No arquivo `src/main/resources/application.properties`, configure suas credenciais de banco de dados:
 
-:tada: :partying_face: CONTAINER INICIALIZADO - OS ENDPOINTS JÁ DEVEM FUNCIONAR
+```properties
+spring.datasource.url=jdbc:<tipo-do-seu-banco>://<host>:<porta>/<nome_do_banco>
+spring.datasource.username=<seu_usuario>
+spring.datasource.password=<sua_senha>
+spring.jpa.hibernate.ddl-auto=update
+server.port=8080
+```
 
-5) Para parar o container docker stop atividade-spring-container
-7) Para inicializar novamente o container docker start atividade-spring-container
+> **Dica:** para ambiente de produção, edite `application-production.properties` com valores adequados.
 
-## 🧑‍💻👩‍💻 Contribuidores
-André Mori
-Bárbara Almeida
-Gabriel Lopez
-Jaqueline Otero
-Matheus Oliveira
+## 3. Build e execução local
 
+### 3.1 Com Maven
 
+```bash
+./mvnw clean package
+java -jar target/gestao-residuos-0.0.1-SNAPSHOT.jar
+```
 
+### 3.2 Com Docker
+
+```bash
+# Subir a aplicação
+docker compose up
+```
+
+## 4. Endpoints Disponíveis
+
+### Autenticação
+
+- **POST** `/auth/register` – registrar novo usuário
+- **POST** `/auth/login` – obter token JWT
+
+### API de Recursos (JWT Bearer)
+
+- **GET**  `/api/v1/caminhoes`
+
+- **POST** `/api/v1/caminhoes`
+
+- **PUT**  `/api/v1/caminhoes/{id}`
+
+- **DELETE** `/api/v1/caminhoes/{id}`
+
+- **GET**  `/api/v1/recipientes`
+
+- **POST** `/api/v1/recipientes`
+
+- **PUT**  `/api/v1/recipientes/{id}`
+
+- **DELETE** `/api/v1/recipientes/{id}`
+
+- **GET**  `/api/v1/rotas`
+
+- **POST** `/api/v1/rotas`
+
+- **PUT**  `/api/v1/rotas/{id}`
+
+- **DELETE** `/api/v1/rotas/{id}`
+
+- **GET**  `/api/v1/agendamentos`
+
+- **POST** `/api/v1/agendamentos`
+
+- **PUT**  `/api/v1/agendamentos/{id}`
+
+- **DELETE** `/api/v1/agendamentos/{id}`
+
+- **GET**  `/api/v1/emergencias`
+
+- **POST** `/api/v1/emergencias`
+
+- **PUT**  `/api/v1/emergencias/{id}`
+
+- **DELETE** `/api/v1/emergencias/{id}`
+
+> Endpoints GET podem ser usados por usuários autenticados (ADMIN e USER). POST, PUT e DELETE são restritos a usuários com role ADMIN.
+
+## 5. Pipeline CI/CD (GitHub Actions)
+
+O workflow está definido em `.github/workflows/ci-cd.yml` e possui as seguintes etapas:
+
+1. **build-and-push:** build da aplicação, construção das imagens Docker (tags `dev-<run_id>` e `prod-<run_id>`) e push para Docker Hub.
+2. **deploy-dev:** deploy da imagem `dev-<run_id>` no Azure Container Instances (RG `rg-gestao-dev`).
+3. **deploy-prod:** deploy da imagem `prod-<run_id>` no Azure Container Instances (RG `rg-gestao-prod`), disparado em pushes para `main`.
+
+## 6. Testes Rápidos
+
+Para validar localmente, execute:
+
+```bash
+# Registrar usuário
+curl -X POST http://localhost:8080/auth/register \
+  -H "Content-Type: application/json" \
+  -d '{"nome":"Teste","cpf":"12345678901","rg":"MG1234567","dataNascimento":"1990-01-01","orgaoExpedicao":"SSP","imagem":{"fileName":"test.jpg","base64":"..."},"telefone":"11900000000"}'
+
+# Login
+curl -X POST http://localhost:8080/auth/login \
+  -H "Content-Type: application/json" \
+  -d '{"cpf":"12345678901","password":"<senha>"}'
+
+# Listar caminhões
+curl http://localhost:8080/api/v1/caminhoes \
+  -H "Authorization: Bearer <TOKEN_JWT>"
+```
+
+## 7. Contribuição
+
+**Autores:** André Mori, Bárbara Almeida, Gabriel Lopez, Jaqueline Otero, Matheus Oliveira
 
