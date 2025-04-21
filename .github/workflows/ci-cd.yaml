@@ -65,5 +65,8 @@ jobs:
             --image ${{ env.IMAGE }}:prod-${{ needs.build-and-push.outputs.tag }} \
             --dns-name-label gestao-residuos-prod \
             --os-type Linux \
+            --registry-login-server index.docker.io \
+            --registry-username ${{ secrets.DOCKERHUB_USERNAME }} \
+            --registry-password ${{ secrets.DOCKERHUB_TOKEN }} \
             --ports 8080 --cpu 1 --memory 1.5 \
             --restart-policy OnFailure
