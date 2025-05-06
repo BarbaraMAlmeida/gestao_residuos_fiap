@@ -1,0 +1,53 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://example.com/object1746497954.json",
+  "title": "Root",
+  "type": "object",
+  "required": [
+    "idAgendamento",
+    "dtAgendamento",
+    "statusAgendamento",
+    "rota"
+  ],
+  "properties": {
+    "idAgendamento": {
+      "$id": "#root/idAgendamento",
+      "title": "Idagendamento",
+      "type": "integer",
+      "examples": [
+        2
+      ],
+      "default": 0
+    },
+    "dtAgendamento": {
+      "$id": "#root/dtAgendamento",
+      "title": "Dtagendamento",
+      "type": "string",
+      "default": "",
+      "examples": [
+        "2024-07-02"
+      ],
+      "pattern": "^.*$"
+    },
+    "statusAgendamento": {
+      "$id": "#root/statusAgendamento",
+      "title": "Statusagendamento",
+      "type": "string",
+      "default": "",
+      "examples": [
+        "CONCLUIDO"
+      ],
+      "pattern": "^.*$"
+    },
+    "rota": {
+      "$id": "#root/rota",
+      "title": "Rota",
+      "type": "integer",
+      "examples": [
+        1
+      ],
+      "default": 0
+    }
+  }
+}

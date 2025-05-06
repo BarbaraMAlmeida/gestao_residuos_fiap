@@ -11,6 +11,7 @@ import com.networknt.schema.ValidationMessage;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import model.AgendamentoModel;
+import model.LocalDateAdapter;
 import model.UsuarioModel;
 import org.json.JSONObject;
 
@@ -28,6 +29,7 @@ public class AgendamentoService {
 
     final AgendamentoModel agendamentoModel = new AgendamentoModel();
     public final Gson gson = new GsonBuilder()
+            .registerTypeAdapter(LocalDate.class, new LocalDateAdapter())
             .excludeFieldsWithoutExposeAnnotation()
             .create();
     public Response response;
