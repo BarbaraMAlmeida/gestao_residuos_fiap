@@ -30,17 +30,22 @@ public class AuthController {
     private TokenService tokenService;
 
     @PostMapping("/login")
-    public ResponseEntity login(@RequestBody @Valid LoginDto loginDto) {
-        UsernamePasswordAuthenticationToken usernamePassword =
-                new UsernamePasswordAuthenticationToken(
-                        loginDto.email(),
-                        loginDto.senha());
+    public ResponseEntity login(@RequestBody LoginDto loginDto) {
+        try {
+            UsernamePasswordAuthenticationToken usernamePassword =
+                    new UsernamePasswordAuthenticationToken(
+                            loginDto.email(),
+                            loginDto.senha()
+                    );
 
-        Authentication auth = authenticationManager.authenticate(usernamePassword);
+            Authentication auth = authenticationManager.authenticate(usernamePassword);
+            String token = tokenService.gerarToken((Usuario) auth.getPrincipal());
 
-        String token = tokenService.gerarToken((Usuario) auth.getPrincipal());
-
-        return ResponseEntity.ok(new TokenDto(token));
+            return ResponseEntity.ok(new TokenDto(token));
+        } catch (Exception ex) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                    .body("{\"erro\": \"Credenciais inválidas.\"}");
+        }
     }
 
     @PostMapping("/register")
