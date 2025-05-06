@@ -1,0 +1,64 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://example.com/object1746502235.json",
+  "title": "Root",
+  "type": "object",
+  "required": [
+    "dtEmergencia",
+    "status",
+    "descricao",
+    "recipiente",
+    "caminhao"
+  ],
+  "properties": {
+    "dtEmergencia": {
+      "$id": "#root/dtEmergencia",
+      "title": "Dtemergencia",
+      "type": "string",
+      "default": "",
+      "examples": [
+        "2023-03-01"
+      ],
+      "pattern": "^.*$"
+    },
+    "status": {
+      "$id": "#root/status",
+      "title": "Status",
+      "type": "string",
+      "default": "",
+      "examples": [
+        "COLETADA"
+      ],
+      "pattern": "^.*$"
+    },
+    "descricao": {
+      "$id": "#root/descricao",
+      "title": "Descricao",
+      "type": "string",
+      "default": "",
+      "examples": [
+        "teste"
+      ],
+      "pattern": "^.*$"
+    },
+    "recipiente": {
+      "$id": "#root/recipiente",
+      "title": "Recipiente",
+      "type": "integer",
+      "examples": [
+        1
+      ],
+      "default": 0
+    },
+    "caminhao": {
+      "$id": "#root/caminhao",
+      "title": "Caminhao",
+      "type": "integer",
+      "examples": [
+        2
+      ],
+      "default": 0
+    }
+  }
+}
