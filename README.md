@@ -145,3 +145,30 @@ curl http://localhost:8080/api/v1/caminhoes \
 
 **Link:** https://github.com/BarbaraMAlmeida/gestao_residuos_fiap
 
+## 9. Executando os Testes com os Runners
+
+## Pré-requisitos
+**Java:** Certifique-se de que o Java JDK está instalado (versão 8 ou superior).
+**Maven:** Verifique se o Maven está configurado no ambiente.
+**IDE:** Utilize uma IDE como **IntelliJ IDEA** para facilitar a execução dos testes.
+Dependências: Certifique-se de que as dependências do Cucumber estão configuradas no **pom.xml.**
+
+**Estrutura dos Runners**
+Os Runners estão localizados no pacote **src/test/java/runner** e são responsáveis por executar os testes de cada funcionalidade. Cada Runner está associado a um arquivo .feature específico.
+
+## Runners Disponíveis
+**EmergenciaRunner:** Executa os testes do arquivo Emergencia.feature.
+**AgendamentoRunner:** Executa os testes do arquivo Agendamento.feature.
+**RotasRunner:** Executa os testes do arquivo Rotas.feature.
+**AuthRunner:** Executa os testes do arquivo Auth.feature.
+**CaminhaoRunner:** Executa os testes do arquivo Caminhao.feature.
+**RecipienteRunner:** (se necessário, crie um Runner para Recipiente.feature).
+
+## GUIA: Executando os Testes
+1. Via IDE
+2. Abra o projeto na IntelliJ IDEA.
+3. Navegue até o pacote runner em src/test/java.
+4. Clique com o botão direito no Runner desejado (ex.: EmergenciaRunner).
+5. Selecione a opção Run 'EmergenciaRunner'.
+6. Verifique os resultados no console e nos relatórios gerados.
+
