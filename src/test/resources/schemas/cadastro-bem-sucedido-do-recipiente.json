@@ -1,0 +1,73 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://example.com/object1746509725.json",
+  "title": "Root",
+  "type": "object",
+  "required": [
+    "maxCapacidade",
+    "atualNivel",
+    "status",
+    "ultimaAtualizacao",
+    "latitude",
+    "longitude"
+  ],
+  "properties": {
+    "maxCapacidade": {
+      "$id": "#root/maxCapacidade",
+      "title": "Maxcapacidade",
+      "type": "integer",
+      "examples": [
+        90
+      ],
+      "default": 0
+    },
+    "atualNivel": {
+      "$id": "#root/atualNivel",
+      "title": "Atualnivel",
+      "type": "integer",
+      "examples": [
+        60
+      ],
+      "default": 0
+    },
+    "status": {
+      "$id": "#root/status",
+      "title": "Status",
+      "type": "string",
+      "default": "",
+      "examples": [
+        "CAPACIDADE_ATINGIDA"
+      ],
+      "pattern": "^.*$"
+    },
+    "ultimaAtualizacao": {
+      "$id": "#root/ultimaAtualizacao",
+      "title": "Ultimaatualizacao",
+      "type": "string",
+      "default": "",
+      "examples": [
+        "2024-10-01"
+      ],
+      "pattern": "^.*$"
+    },
+    "latitude": {
+      "$id": "#root/latitude",
+      "title": "Latitude",
+      "type": "integer",
+      "examples": [
+        29
+      ],
+      "default": 0
+    },
+    "longitude": {
+      "$id": "#root/longitude",
+      "title": "Longitude",
+      "type": "integer",
+      "examples": [
+        22
+      ],
+      "default": 0
+    }
+  }
+}

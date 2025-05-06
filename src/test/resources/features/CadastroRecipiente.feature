@@ -1,0 +1,33 @@
+# language: pt
+Funcionalidade: Cadastro de novo recipiente
+  Como usuário da API
+  Quero cadastrar um novo recipiente
+  Para que o registro seja salvo corretamente no sistema
+
+  Cenário: Cadastro bem-sucedido de recepiente
+    Dado que eu tenha os seguintes dados do recipiente:
+      | campo                | valor               |
+      | maxCapacidade        | 90                  |
+      | atualNivel           | 60                  |
+      | status               | CAPACIDADE_ATINGIDA |
+      | ultimaAtualizacao    | 2024-10-01          |
+      | latitude             | 29                  |
+      | longitude            | 22                  |
+
+    Quando eu enviar a requisição para o endpoint "/recipiente" de cadastro de recipientes
+    Entao o status code da resposta de recipiente deve ser 201
+    E que o arquivo de contrato de recipiente esperado é o "Cadastro bem-sucedido da Recipiente"
+    Então a resposta da requisição de recipiente deve estar em conformidade com o contrato selecionado
+
+  Cenário: Cadastro de recipiente com dados inválidos
+    Dado que eu tenha os seguintes dados do recipiente:
+      | campo                | valor               |
+      | maxCapacidade        | 90                  |
+      | atualNivel           | 60                  |
+      | status               | INVALIDO            |
+      | ultimaAtualizacao    | 2024-10-01          |
+      | latitude             | 29                  |
+      | longitude            | 22                  |
+    Quando eu enviar a requisição para o endpoint "/recipiente" de cadastro de recipientes
+    Entao o status code da resposta de recipiente deve ser 400
+    E o corpo da reposta de erro da api deve retornar a mensagem "Preencha todos os campos obrigatórios."
