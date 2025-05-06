@@ -157,12 +157,12 @@ Dependências: Certifique-se de que as dependências do Cucumber estão configur
 Os Runners estão localizados no pacote **src/test/java/runner** e são responsáveis por executar os testes de cada funcionalidade. Cada Runner está associado a um arquivo .feature específico.
 
 ## Runners Disponíveis
-**EmergenciaRunner:** Executa os testes do arquivo Emergencia.feature.
-**AgendamentoRunner:** Executa os testes do arquivo Agendamento.feature.
-**RotasRunner:** Executa os testes do arquivo Rotas.feature.
-**AuthRunner:** Executa os testes do arquivo Auth.feature.
-**CaminhaoRunner:** Executa os testes do arquivo Caminhao.feature.
-**RecipienteRunner:** (se necessário, crie um Runner para Recipiente.feature).
+- **EmergenciaRunner:** Executa os testes do arquivo Emergencia.feature.
+- **AgendamentoRunner:** Executa os testes do arquivo Agendamento.feature.
+- **RotasRunner:** Executa os testes do arquivo Rotas.feature.
+- **AuthRunner:** Executa os testes do arquivo Auth.feature.
+- **CaminhaoRunner:** Executa os testes do arquivo Caminhao.feature.
+- **RecipienteRunner:** (se necessário, crie um Runner para Recipiente.feature).
 
 ## GUIA: Executando os Testes
 1. Via IDE
