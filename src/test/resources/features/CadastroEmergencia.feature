@@ -20,11 +20,14 @@ Funcionalidade: Cadastro de nova emergencia
     Cenário: Cadastro de emergencia com dados inválidos
     Dado que eu tenha os seguintes dados da emergencia:
       | campo          | valor        |
-      | dtEmergencia   | 2022-03-01   |
+      | dtEmergencia   | 2023-03-01   |
       | status         | INVALIDO     |
+      | descricao      | teste        |
+      | recipiente     | 1            |
+      | caminhao       | 2            |
     Quando eu enviar a requisição para o endpoint "/emergencia" de cadastro de emergencias
     Entao o status code da resposta de emergencia deve ser 400
-    E o corpo da reposta de erro da api deve retornar a mensagem "Erro ao cadastrar emergencia"
+    E o corpo da reposta de erro da api deve retornar a mensagem "Preencha todos os campos obrigatórios."
 
 
 #  Cenario: listar todas as emergencias

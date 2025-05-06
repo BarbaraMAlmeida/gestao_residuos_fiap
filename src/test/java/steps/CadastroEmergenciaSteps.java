@@ -35,9 +35,8 @@ public class CadastroEmergenciaSteps {
 
     @E("o corpo da reposta de erro da api deve retornar a mensagem {string}")
     public void oCorpoDaRepostaDeErroDaApiDeveRetornarAMensagem(String message) {
-        ErrorMessageModel errorMessageModel = cadastroEmergenciaService.gson.fromJson(
-                cadastroEmergenciaService.response.jsonPath().prettify(), ErrorMessageModel.class);
-        Assert.assertEquals(message, errorMessageModel.getErro());
+        String erro = cadastroEmergenciaService.response.jsonPath().getString("erro");
+        Assert.assertEquals(message, erro);
     }
 
     @E("que o arquivo de contrato de emergencia esperado é o {string}")
