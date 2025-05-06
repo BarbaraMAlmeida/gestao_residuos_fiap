@@ -109,4 +109,18 @@ public class RecipienteService {
         Set<ValidationMessage> schemaValidationErrors = schema.validate(jsonResponseNode);
         return schemaValidationErrors;
     }
+
+    public void listRecipientes(String endpoint) {
+        String url = baseUrl + endpoint;
+
+        response = given()
+                .header("Authorization", jwtToken)
+                .contentType(ContentType.JSON)
+                .accept(ContentType.JSON)
+                .when()
+                .get(url)
+                .then()
+                .extract()
+                .response();
+    }
 }

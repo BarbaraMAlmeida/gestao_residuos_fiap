@@ -31,32 +31,3 @@ Funcionalidade: Cadastro de agendamento
     Quando eu enviar uma requisição GET para o endpoint "/agendamento"
     Então o status code da resposta de agendamento deve ser 200
     E a resposta deve conter uma lista de agendamentos
-
-#  Cenário: Atualizar um agendamento existente
-#    Dado que eu tenha um agendamento cadastrado com os seguintes dados:
-#      | campo | valor              |
-#      | nome  | João da Silva      |
-#      | email | joao@teste.com     |
-#      | senha | 12345678           |
-#      | role  | USER               |
-#    E que eu tenha os seguintes dados atualizados:
-#      | campo | valor                |
-#      | nome  | João Atualizado      |
-#      | email | joaoatualizado@teste.com |
-#      | senha | 87654321             |
-#      | role  | ADMIN                |
-#    Quando eu enviar uma requisição PUT para o endpoint "/agendamento/{id}" com os dados atualizados
-#    Então o status code da resposta deve ser 200
-#    E o nome retornado deve ser "João Atualizado"
-#
-#
-#  Cenário: Excluir um agendamento existente
-#    Dado que eu tenha um agendamento cadastrado com os seguintes dados:
-#      | campo | valor         |
-#      | nome  | Maria da Luz  |
-#      | email | maria@teste.com |
-#      | senha | 12345678      |
-#      | role  | USER          |
-#    Quando eu enviar uma requisição DELETE para o endpoint "/agendamento/{id}"
-#    Então o status code da resposta deve ser 204
-#    E o agendamento não deve mais existir na listagem

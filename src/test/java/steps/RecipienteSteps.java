@@ -3,7 +3,9 @@ package steps;
 import com.networknt.schema.ValidationMessage;
 import io.cucumber.java.Before;
 import io.cucumber.java.pt.*;
+import model.EmergenciaModel;
 import model.ErrorMessageModel;
+import model.RecipienteModel;
 import org.junit.Assert;
 import services.RecipienteService;
 import java.io.IOException;
@@ -55,4 +57,19 @@ public class RecipienteSteps {
     }
 
 
+    @Quando("eu enviar uma requisição GET para o endpoint de recipiente {string}")
+    public void euEnviarUmaRequisiçãoGETParaOEndpointDeRecipiente(String endpoint) {
+        recipienteService.listRecipientes(endpoint);
+    }
+
+    @Então("o status code da resposta de lista de recipiente deve ser {int}")
+    public void oStatusCodeDaRespostaDeListaDeRecipienteDeveSer(int statusCode) {
+        Assert.assertEquals(statusCode, recipienteService.response.statusCode());
+    }
+
+    @E("a resposta deve conter uma lista de recipientes")
+    public void aRespostaDeveConterUmaListaDeRecipientes() {
+        RecipienteModel[] recipientes = recipienteService.response.getBody().as(RecipienteModel[].class);
+        Assert.assertTrue("A lista de recipientes deve conter pelo menos um item", recipientes.length >= 0);
+    }
 }

@@ -46,28 +46,4 @@ public class AgendamentoService {
         return new AgendamentoExibicaoDto(agendamentoRepository.save(agendamento));
     }
 
-    public void deleteAgedamento(Long id) {
-        Optional<Agendamento> agendamentoOptional = agendamentoRepository.findById(id);
-
-        if(agendamentoOptional.isPresent()) {
-            agendamentoRepository.delete(agendamentoOptional.get());
-        }
-        else {
-            throw new InformacaoNaoEncontradaException("Esse agendamento não existe");
-        }
-    }
-
-    public AgendamentoExibicaoDto updateAgendamento(
-            @Valid AgendamentoCadastroDto agendamentoCadastroDto,
-            Long id) {
-        Agendamento agendamento = agendamentoRepository.findById(id)
-                .orElseThrow(() -> new InformacaoNaoEncontradaException("Agendamento não encontrado"));
-
-       agendamento.setDtAgendamento(agendamentoCadastroDto.dtAgendamento());
-       agendamento.setStatusAgendamento(agendamentoCadastroDto.statusAgendamento());
-        Rota rota = rotaRepository.findById(agendamentoCadastroDto.rota())
-                .orElseThrow(() -> new RuntimeException("Rota não encontrada"));
-        agendamento.setRota(rota);
-        return new AgendamentoExibicaoDto(agendamentoRepository.save(agendamento));
-    }
 }

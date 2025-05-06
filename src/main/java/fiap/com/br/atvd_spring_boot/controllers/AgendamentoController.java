@@ -31,18 +31,4 @@ public class AgendamentoController {
         return agendamentoService.createAgendamento(agendamentoCadastroDto);
     }
 
-    @DeleteMapping("/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteAgedamento(@PathVariable Long id) {
-        agendamentoService.deleteAgedamento(id);
-    }
-
-    @PutMapping("/{id}")
-    @ResponseStatus(HttpStatus.OK)
-    public AgendamentoExibicaoDto updateAgendamento(
-            @RequestBody @Valid AgendamentoCadastroDto agendamentoCadastroDto,
-            @PathVariable Long id
-    ) {
-        return agendamentoService.updateAgendamento(agendamentoCadastroDto, id);
-    }
 }
