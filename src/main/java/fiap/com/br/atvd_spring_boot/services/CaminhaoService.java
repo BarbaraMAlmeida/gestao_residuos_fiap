@@ -25,7 +25,7 @@ public class CaminhaoService {
                 .collect(Collectors.toList());
     }
 
-    public CaminhaoExibicaoDto createCaminhao(CaminhaoCadastroDto caminhaoCadastroDto) {
+    public CaminhaoExibicaoDto createCaminhao(CaminhaoExibicaoDto caminhaoCadastroDto) {
         Caminhao caminhao = new Caminhao();
         BeanUtils.copyProperties(caminhaoCadastroDto, caminhao);
         return new CaminhaoExibicaoDto(caminhaoRepository.save(caminhao));

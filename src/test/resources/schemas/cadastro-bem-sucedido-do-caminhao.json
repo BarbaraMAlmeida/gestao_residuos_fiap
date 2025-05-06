@@ -1,0 +1,32 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://example.com/object1746509942.json",
+  "title": "Root",
+  "type": "object",
+  "required": [
+    "placa",
+    "capacidade"
+  ],
+  "properties": {
+    "placa": {
+      "$id": "#root/placa",
+      "title": "Placa",
+      "type": "string",
+      "default": "",
+      "examples": [
+        "123456"
+      ],
+      "pattern": "^.*$"
+    },
+    "capacidade": {
+      "$id": "#root/capacidade",
+      "title": "Capacidade",
+      "type": "integer",
+      "examples": [
+        200
+      ],
+      "default": 0
+    }
+  }
+}

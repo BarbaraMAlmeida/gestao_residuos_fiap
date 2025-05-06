@@ -11,6 +11,7 @@ import com.networknt.schema.ValidationMessage;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import model.AgendamentoModel;
+import model.CaminhaoModel;
 import model.LocalDateAdapter;
 import org.json.JSONObject;
 
@@ -23,9 +24,9 @@ import java.util.Set;
 
 import static io.restassured.RestAssured.given;
 
-public class AgendamentoService {
+public class CaminhaoService {
 
-    final AgendamentoModel agendamentoModel = new AgendamentoModel();
+    final CaminhaoModel caminhaoModel = new CaminhaoModel();
     public final Gson gson = new GsonBuilder()
             .registerTypeAdapter(LocalDate.class, new LocalDateAdapter())
             .excludeFieldsWithoutExposeAnnotation()
@@ -60,28 +61,24 @@ public class AgendamentoService {
     }
 
 
-    public void setFieldsUsuario(String field, String value) {
+    public void setFieldsCaminhao(String field, String value) {
         if (value == null || value.isBlank()) {
             throw new IllegalArgumentException("Valor nulo ou vazio para o campo: " + field);
         }
 
         switch (field.trim()) {
-            case "dtAgendamento" ->
-                    agendamentoModel.setDtAgendamento(LocalDate.parse(value));
+            case "placa" ->
+                    caminhaoModel.setPlaca(value);
 
-            case "statusAgendamento" ->
-                    agendamentoModel.setStatusAgendamento(value);
-
-            case "rota" ->
-                    agendamentoModel.setRota(Long.parseLong(value));
-
+            case "capacidade" ->
+                    caminhaoModel.setCapacidade(Long.parseLong(value));
             default -> throw new IllegalArgumentException("Campo inesperado: " + field);
         }
     }
 
-    public void createAgendamento(String endPoint) {
+    public void createCaminhao(String endPoint) {
         String url = baseUrl + endPoint;
-        String bodyToSend = gson.toJson(agendamentoModel);
+        String bodyToSend = gson.toJson(caminhaoModel);
         System.out.println("Payload enviado: " + bodyToSend);
 
         response = given()
@@ -96,7 +93,7 @@ public class AgendamentoService {
                 .response();
     }
 
-    public void listAgendamentos (String endpoint) {
+    public void listCaminhao (String endpoint) {
         String url = baseUrl + endpoint;
 
         response = given()
@@ -119,7 +116,7 @@ public class AgendamentoService {
 
     public void setContract(String contract) throws IOException {
         switch (contract) {
-            case "Cadastro bem-sucedido do agendamento" -> jsonSchema = loadJsonFromFile(schemasPath + "cadastro-bem-sucedido-do-agendamento.json");
+            case "Cadastro bem-sucedido do caminhao" -> jsonSchema = loadJsonFromFile(schemasPath + "cadastro-bem-sucedido-do-caminhao.json");
             default -> throw new IllegalStateException("Unexpected contract" + contract);
         }
     }
@@ -133,4 +130,5 @@ public class AgendamentoService {
         Set<ValidationMessage> schemaValidationErrors = schema.validate(jsonResponseNode);
         return schemaValidationErrors;
     }
+
 }
