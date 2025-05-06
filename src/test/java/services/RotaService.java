@@ -101,6 +101,7 @@ public class RotaService {
 
     public void deleteRota(String endPoint) {
         String url = String.format("%s%s/%s", baseUrl, endPoint, idRota);
+        System.out.println(url);
         response = given()
                 .header("Authorization", jwtToken)
                 .accept(ContentType.JSON)
@@ -123,9 +124,12 @@ public class RotaService {
 
     public void retrieveRotaId() {
         if (response == null || response.getBody().asString().isEmpty()) {
-            createRota("/rotas"); // Garante que uma rota será criada se não houver response
+            // Preenche com valores default se não tiver nada
+            rotaModel.setDtRota(LocalDate.now());
+            rotaModel.setRecipiente(1L); // IDs válidos existentes
+            rotaModel.setCaminhao(1L);
+            createRota("/rotas");
         }
-
         idRota = response.jsonPath().getString("idRota");
     }
 }
