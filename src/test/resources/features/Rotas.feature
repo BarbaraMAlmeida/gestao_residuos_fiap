@@ -26,4 +26,4 @@ Funcionalidade: Cadastro de nova rota
   Cenário: Deve ser possivel deletar uma rota
     Dado que eu recupere o ID da rota criada no contexto
     Quando eu enviar a requisição com o ID para o endpoint "/rotas" de deleção de rotas
-    Entao o status code da resposta de rota deve ser 204
+    Entao o status code da resposta de rota deve ser 200

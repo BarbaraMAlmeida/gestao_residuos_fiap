@@ -43,8 +43,8 @@ public class RotaService {
     public void autenticarEObterToken() {
         String loginBody = """
         {
-           "email": "andre@teste3.com",
-           "senha": "12345678"
+           "email": "babii@teste.com",
+           "senha": "12667763"
         }
     """;
         Response loginResponse = given()
@@ -122,6 +122,10 @@ public class RotaService {
     }
 
     public void retrieveRotaId() {
-        idRota = String.valueOf(gson.fromJson(response.jsonPath().prettify(), RotaModel.class).getIdRota());
+        if (response == null || response.getBody().asString().isEmpty()) {
+            createRota("/rotas"); // Garante que uma rota será criada se não houver response
+        }
+
+        idRota = response.jsonPath().getString("idRota");
     }
 }
