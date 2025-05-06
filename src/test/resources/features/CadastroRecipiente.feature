@@ -30,4 +30,4 @@ Funcionalidade: Cadastro de novo recipiente
       | longitude            | 22                  |
     Quando eu enviar a requisição para o endpoint "/recipiente" de cadastro de recipientes
     Entao o status code da resposta de recipiente deve ser 400
-    E o corpo da reposta de erro da api deve retornar a mensagem "Preencha todos os campos obrigatórios."
+    E o corpo da resposta de erro da api de recipiente deve retornar a mensagem "Preencha todos os campos obrigatórios."

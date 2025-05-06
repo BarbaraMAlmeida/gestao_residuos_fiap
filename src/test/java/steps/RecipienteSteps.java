@@ -32,12 +32,6 @@ public class RecipienteSteps {
     }
 
 
-    @E("o corpo da reposta de erro da api deve retornar a mensagem {string}")
-    public void oCorpoDaRepostaDeErroDaApiDeveRetornarAMensagem(String message) {
-        String erro = recipienteService.response.jsonPath().getString("erro");
-        Assert.assertEquals(message, erro);
-    }
-
     @E("que o arquivo de contrato de recipiente esperado é o {string}")
     public void queOArquivoDeContratoDeRecipienteEsperadoÉO(String contract) throws IOException {
         recipienteService.setContract(contract);
@@ -53,4 +47,12 @@ public class RecipienteSteps {
     public void oStatusCodeDaRespostaDeRecipienteDeveSer(int statusCode) {
         Assert.assertEquals(statusCode, recipienteService.response.statusCode());
     }
+
+    @E("o corpo da resposta de erro da api de recipiente deve retornar a mensagem {string}")
+    public void oCorpoDaRespostaDeErroDaApiDeRecipienteDeveRetornarAMensagem(String message) {
+        String erro = recipienteService.response.jsonPath().getString("erro");
+        Assert.assertEquals(message, erro);
+    }
+
+
 }

@@ -68,7 +68,7 @@ public class RecipienteService {
 
     public void setContract(String contract) throws IOException {
         switch (contract) {
-            case "Cadastro bem-sucedido da Recipiente" -> jsonSchema = loadJsonFromFile(schemasPath + "cadastro-bem-sucedido-do-recipente.json");
+            case "Cadastro bem-sucedido da Recipiente" -> jsonSchema = loadJsonFromFile(schemasPath + "cadastro-bem-sucedido-do-recipiente.json");
             default -> throw new IllegalStateException("Unexpected contract" + contract);
         }
     }
