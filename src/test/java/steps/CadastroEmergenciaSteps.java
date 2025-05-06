@@ -3,6 +3,8 @@ package steps;
 import com.networknt.schema.ValidationMessage;
 import io.cucumber.java.Before;
 import io.cucumber.java.pt.*;
+import model.AgendamentoModel;
+import model.EmergenciaModel;
 import model.ErrorMessageModel;
 import org.junit.Assert;
 import services.CadastroEmergenciaService;
@@ -53,5 +55,16 @@ public class CadastroEmergenciaSteps {
     @Entao("o status code da resposta de emergencia deve ser {int}")
     public void oStatusCodeDaRespostaDeEmergenciaDeveSer(int statusCode) {
         Assert.assertEquals(statusCode, cadastroEmergenciaService.response.statusCode());
+    }
+
+    @Quando("eu enviar uma requisição GET para o endpoint de emergencia {string}")
+    public void euEnviarUmaRequisiçãoGETParaOEndpointDeEmergencia(String endpoint) {
+        cadastroEmergenciaService.listEmergencias(endpoint);
+    }
+
+    @E("a resposta deve conter uma lista de emergencias")
+    public void aRespostaDeveConterUmaListaDeEmergencias() {
+        EmergenciaModel[] emergencias = cadastroEmergenciaService.response.getBody().as(EmergenciaModel[].class);
+        Assert.assertTrue("A lista de emergencias deve conter pelo menos um item", emergencias.length >= 0);
     }
 }

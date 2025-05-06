@@ -30,7 +30,7 @@ Funcionalidade: Cadastro de nova emergencia
     E o corpo da reposta de erro da api deve retornar a mensagem "Preencha todos os campos obrigatórios."
 
 
-#  Cenario: listar todas as emergencias
-#    Quando eu enviar a requisição para o endpoint "/emergencia"
-#    Entao o status code da resposta deve ser 200
-#    E o corpo da reposta de erro da api deve retornar a mensagem "Lista de emergencias"
+  Cenário: Listar todos as emergencias
+    Quando eu enviar uma requisição GET para o endpoint de emergencia "/emergencia"
+    Então o status code da resposta de emergencia deve ser 200
+    E a resposta deve conter uma lista de emergencias
