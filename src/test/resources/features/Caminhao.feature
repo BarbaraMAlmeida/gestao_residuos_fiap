@@ -3,6 +3,7 @@
 Funcionalidade: Cadastro de caminhao
   Como usuário da API
   Quero cadastrar caminhoes
+  @padrão
   Cenário: Cadastro bem-sucedido do caminhao
     Dado que eu tenha os seguintes dados para caminhao:
       | campo        | valor   |
@@ -24,7 +25,7 @@ Funcionalidade: Cadastro de caminhao
     Então  o status code da resposta de caminhao deve ser 400
     E o corpo da resposta de caminhao deve conter a mensagem "A placa deve conter no máximo 7 caracteres"
 
-
+  @padrão
   Cenário: Listar todos os caminhaos
     Quando eu enviar uma requisição GET para o endpoint de caminhao "/caminhao"
     Então o status code da resposta de caminhao deve ser 200

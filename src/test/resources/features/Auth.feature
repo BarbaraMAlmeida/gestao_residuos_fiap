@@ -4,6 +4,7 @@ Funcionalidade: Cadastro e autenticação de usuários
   Como usuário da API
   Quero me cadastrar como usuário
   Para ter acesso as funcionalidades
+  @padrão
   Cenário: Cadastro bem-sucedido do usuário
     Dado que eu tenha os seguintes dados para cadastro:
       | campo          | valor                 |

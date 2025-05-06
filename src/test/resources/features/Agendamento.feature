@@ -3,6 +3,7 @@
 Funcionalidade: Cadastro de agendamento
   Como usuário da API
   Quero cadastrar agendamentos
+  @padrão
   Cenário: Cadastro bem-sucedido do agendamento
     Dado que eu tenha os seguintes dados para agendamento:
       | campo             | valor         |
@@ -26,7 +27,7 @@ Funcionalidade: Cadastro de agendamento
     Então  o status code da resposta de agendamento deve ser 400
     E o corpo da resposta de agendamento deve conter a mensagem "Preencha todos os campos obrigatórios."
 
-
+  @padrão
   Cenário: Listar todos os agendamentos
     Quando eu enviar uma requisição GET para o endpoint "/agendamento"
     Então o status code da resposta de agendamento deve ser 200
