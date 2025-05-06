@@ -1,0 +1,157 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://example.com/object1746515120.json",
+  "title": "Root",
+  "type": "object",
+  "required": [
+    "idRota",
+    "dtRota",
+    "caminhao",
+    "recipiente"
+  ],
+  "properties": {
+    "idRota": {
+      "$id": "#root/idRota",
+      "title": "Idrota",
+      "type": "integer",
+      "examples": [
+        1
+      ],
+      "default": 0
+    },
+    "dtRota": {
+      "$id": "#root/dtRota",
+      "title": "Dtrota",
+      "type": "string",
+      "default": "",
+      "examples": [
+        "2024-07-01"
+      ],
+      "pattern": "^.*$"
+    },
+    "caminhao": {
+      "$id": "#root/caminhao",
+      "title": "Caminhao",
+      "type": "object",
+      "required": [
+        "idCaminhao",
+        "placa",
+        "capacidade"
+      ],
+      "properties": {
+        "idCaminhao": {
+          "$id": "#root/caminhao/idCaminhao",
+          "title": "Idcaminhao",
+          "type": "integer",
+          "examples": [
+            2
+          ],
+          "default": 0
+        },
+        "placa": {
+          "$id": "#root/caminhao/placa",
+          "title": "Placa",
+          "type": "string",
+          "default": "",
+          "examples": [
+            "12123"
+          ],
+          "pattern": "^.*$"
+        },
+        "capacidade": {
+          "$id": "#root/caminhao/capacidade",
+          "title": "Capacidade",
+          "type": "integer",
+          "examples": [
+            90
+          ],
+          "default": 0
+        }
+      }
+    }
+  ,
+    "recipiente": {
+      "$id": "#root/recipiente",
+      "title": "Recipiente",
+      "type": "object",
+      "required": [
+        "idRecipiente",
+        "maxCapacidade",
+        "atualNivel",
+        "status",
+        "ultimaAtualizacao",
+        "latitude",
+        "longitude"
+      ],
+      "properties": {
+        "idRecipiente": {
+          "$id": "#root/recipiente/idRecipiente",
+          "title": "Idrecipiente",
+          "type": "integer",
+          "examples": [
+            1
+          ],
+          "default": 0
+        },
+        "maxCapacidade": {
+          "$id": "#root/recipiente/maxCapacidade",
+          "title": "Maxcapacidade",
+          "type": "integer",
+          "examples": [
+            90
+          ],
+          "default": 0
+        },
+        "atualNivel": {
+          "$id": "#root/recipiente/atualNivel",
+          "title": "Atualnivel",
+          "type": "integer",
+          "examples": [
+            60
+          ],
+          "default": 0
+        },
+        "status": {
+          "$id": "#root/recipiente/status",
+          "title": "Status",
+          "type": "string",
+          "default": "",
+          "examples": [
+            "CAPACIDADE_ATINGIDA"
+          ],
+          "pattern": "^.*$"
+        },
+        "ultimaAtualizacao": {
+          "$id": "#root/recipiente/ultimaAtualizacao",
+          "title": "Ultimaatualizacao",
+          "type": "string",
+          "default": "",
+          "examples": [
+            "2024-10-01"
+          ],
+          "pattern": "^.*$"
+        },
+        "latitude": {
+          "$id": "#root/recipiente/latitude",
+          "title": "Latitude",
+          "type": "integer",
+          "examples": [
+            29
+          ],
+          "default": 0
+        },
+        "longitude": {
+          "$id": "#root/recipiente/longitude",
+          "title": "Longitude",
+          "type": "integer",
+          "examples": [
+            22
+          ],
+          "default": 0
+        }
+      }
+    }
+
+  }
+}
